@@ -3,10 +3,6 @@ FROM python:3.8-slim
 COPY . /app
 WORKDIR /app
 
-RUN pip install gdown
-
-RUN python src/bin/download_model
-
 RUN apt-get update && \
     apt-get install -y \
     build-essential \
