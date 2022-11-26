@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: template-api-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: template-api-deployment
+  template:
+    metadata:
+      labels:
+        app: template-api-deployment
+    spec:
+      containers:
+        - name: template-api
+          image: elghibaomar/template-api:latest
+          env:
+            - name: PORT
+              value: "8181"
+          ports:
+            - containerPort: 8181
+
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: template-api-service
+spec:
+  type: LoadBalancer
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8181
+  selector:
+    app: template-api-deployment

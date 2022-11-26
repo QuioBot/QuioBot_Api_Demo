@@ -1,16 +1,35 @@
-# FROM python:3.7.15-slim
-# COPY ./start.sh /start.sh
-# COPY ./app /app
-# WORKDIR /app
-# RUN pip install -r requirements.txt
-# RUN chmod +x start.sh
-# CMD ["./start.sh"]
+FROM python:3.8-slim
+
+COPY . /app
+WORKDIR /app
+
+RUN pip install gdown
+
+RUN python src/bin/download_model
+
+RUN apt-get update && \
+    apt-get install -y \
+    build-essential \
+    python3-dev \
+    python3-setuptools \
+    gcc \
+    make
+
+# Create a virtual environment in /opt
+RUN python3 -m venv /opt/venv
+
+# Install requirments to new virtual environment
+RUN /opt/venv/bin/pip install -r requirements.txt
 
 
-FROM python:3.7.15-slim
-COPY ./requirements.txt /requirements.txt
-COPY ./start.sh /start.sh
-RUN pip install -r /requirements.txt
-RUN chmod +x /start.sh
-COPY ./src /src
-CMD ["./start.sh"]
+# purge unused
+RUN apt-get remove -y --purge make gcc build-essential \
+    && apt-get autoremove -y \
+    && rm -rf /var/lib/apt/lists/*
+
+# make entrypoint.sh executable
+RUN chmod +x entrypoint.sh
+
+
+CMD [ "./entrypoint.sh" ]
+
