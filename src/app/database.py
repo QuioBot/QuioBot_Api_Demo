@@ -7,7 +7,7 @@ SQLALCHAMY_DATABASE_URL = 'postgresql://gdhwlficqahlpa:7260b7853dbf90d2e4e568340
 
 engine = create_engine(SQLALCHAMY_DATABASE_URL)
 
-SessionLocal = sessionmaker(bind=engine, autocommit=False, autoflush=False,)
+SessionLocal = sessionmaker(bind=engine, autocommit=False, autoflush=False)
 
 Base = declarative_base()
 
