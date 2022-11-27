@@ -1,4 +1,4 @@
-FROM python:3.8-slim
+FROM python:3.9-slim
 
 COPY . /app
 WORKDIR /app
@@ -14,7 +14,7 @@ RUN apt-get update && \
 # Create a virtual environment in /opt
 RUN python3 -m venv /opt/venv
 
-RUN apt-get install libpq-dev 
+# RUN apt-get install libpq-dev 
 
 # Install requirments to new virtual environment
 RUN /opt/venv/bin/pip install -r requirements.txt
