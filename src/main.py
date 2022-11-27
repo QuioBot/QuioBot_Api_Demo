@@ -1,7 +1,7 @@
 from fastapi import FastAPI
-from app import  models
-from app.database import engine
-from app.routers import blog, user, authentication
+from src.app import  models
+from src.app.database import engine
+from src.app.routers import blog, user, authentication
 from fastapi.middleware.cors import CORSMiddleware
 
 
@@ -15,6 +15,8 @@ origins = [
     "http://localhost:8080",
     "http://127.0.0.1:8080",
     "http://127.0.0.1",
+    "http://188.166.193.23/#/",
+    "http://188.166.193.23/",
 ]
 
 app.add_middleware(
