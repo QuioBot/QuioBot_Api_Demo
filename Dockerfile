@@ -23,8 +23,6 @@ RUN apt-get remove -y --purge make gcc build-essential \
     && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*
 
-RUN /opt/venv/bin/pip install psycopg2
-
 # make entrypoint.sh executable
 RUN chmod +x entrypoint.sh
 

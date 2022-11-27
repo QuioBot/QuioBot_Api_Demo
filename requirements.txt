@@ -10,4 +10,4 @@ requests
 pytest
 pre-commit
 gunicorn
-# psycopg2
+psycopg2==2.8.4
