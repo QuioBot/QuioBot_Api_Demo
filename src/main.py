@@ -10,16 +10,16 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-# origins = [
-#     "http://localhost",
-#     "http://localhost:8080",
-#     "http://127.0.0.1:8080",
-#     "http://127.0.0.1",
-#     "http://188.166.193.23/",
-#     "http://188.166.193.23:8081",
-# ]
 
 origins = ["*"]
+
+
+
+models.Base.metadata.create_all(engine)
+
+app.include_router(authentication.router)
+app.include_router(blog.router)
+app.include_router(user.router)
 
 app.add_middleware(
     CORSMiddleware,
@@ -28,10 +28,3 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-
-models.Base.metadata.create_all(engine)
-
-app.include_router(authentication.router)
-app.include_router(blog.router)
-app.include_router(user.router)
