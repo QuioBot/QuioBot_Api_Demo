@@ -5,7 +5,6 @@ WORKDIR /app
 
 RUN apt-get update && \
     apt-get install -y \
-    apt-get install libpq-dev \
     build-essential \
     python3-dev \
     python3-setuptools \
@@ -14,6 +13,8 @@ RUN apt-get update && \
 
 # Create a virtual environment in /opt
 RUN python3 -m venv /opt/venv
+
+RUN apt-get install libpq-dev 
 
 # Install requirments to new virtual environment
 RUN /opt/venv/bin/pip install -r requirements.txt
