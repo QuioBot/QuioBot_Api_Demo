@@ -5,4 +5,9 @@ passlib
 bcrypt
 python-jose
 python-multipart
+pydantic
+requests
+pytest
+pre-commit
+gunicorn
 # psycopg2
