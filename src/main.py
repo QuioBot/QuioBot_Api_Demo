@@ -16,6 +16,8 @@ origins = [
     "http://127.0.0.1:8080",
     "http://188.166.193.23",
     "http://188.166.193.23/#",
+    "http://demo.omarelghiba.com",
+    "http://demo.omarelghiba.com/#",
 ]
 
 app.add_middleware(
